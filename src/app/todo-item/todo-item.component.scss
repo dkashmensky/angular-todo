@@ -1,0 +1,35 @@
+@import '~@angular/material/theming';
+@import '../../variables.scss';
+
+.todo-item {
+  align-items: center;
+  border-bottom: 1px solid mat-color($underline);
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  font-size: 16px;
+  height: 50px;
+  justify-content: space-between;
+  padding: 10px 0;
+
+  &__main {
+    display: flex;
+  }
+
+  &__text {
+    padding-left: 20px;
+  }
+
+  &__button {
+    align-items: center;
+    display: none;
+  }
+
+  &__button:hover {
+    color: mat-color($red);
+  }
+
+  &:hover &__button {
+    display: flex;
+  }
+}

@@ -1,0 +1,20 @@
+<div class="add-item">
+  <form class="add-item__form" [formGroup]="addForm" (ngSubmit)="createTodo(addForm.value)">
+    <button aria-label="Add form close button" type="button" class="add-item__close close" (click)="closeForm()">
+      <mat-icon class="close__icon">clear</mat-icon>
+    </button>
+    <div class="form-item">
+      <label class="form-item__label">
+        Todo text
+      </label>
+      <input class="form-item__input" type="text" formControlName="text">
+    </div>
+    <div class="form-item">
+      <label class="form-item__label">
+        Deadline
+      </label>
+      <input class="form-item__input" type="text" formControlName="deadline">
+    </div>
+    <button type="submit">Create</button>
+  </form>
+</div>

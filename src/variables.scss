@@ -1,0 +1,12 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$primary: mat-palette($mat-indigo);
+$side: mat-palette($mat-blue-grey, 50);
+$main: mat-palette($mat-grey, 50);
+$underline: mat-palette($mat-grey, 200);
+
+$font-color: mat-palette($mat-grey, 900);
+$font-color-light:  #999999;
+$green: #00e600;
+$red: mat-palette($mat-red, 700);

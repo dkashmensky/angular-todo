@@ -1,0 +1,30 @@
+@import '~@angular/material/theming';
+@import '../variables.scss';
+
+.wrapper {
+  display: flex;
+  margin-top: 40px;
+  width: 100%;
+}
+
+.header {
+  background: mat-color($primary);
+  height: 40px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.sidemenu {
+  background: mat-color($side);
+  height: 100vh;
+  width: 300px;
+}
+
+.main {
+  background: mat-color($main);
+  box-sizing: border-box;
+  padding: 50px 100px;
+  width: calc(100% - 300px);
+}
