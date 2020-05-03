@@ -37,7 +37,7 @@ export class DataService {
         user: this.user,
         text: todo.text,
         done: todo.done,
-        deadline: todo.deadline,
+        deadline: parseInt(todo.deadline, 0),
       }),
     });
     return response.json();
@@ -65,7 +65,7 @@ export class DataService {
       body: JSON.stringify({
         user: this.user,
         text: todo.text,
-        deadline: todo.deadline,
+        deadline: parseInt(todo.deadline, 0),
       }),
     });
     return response.json();

@@ -6,6 +6,7 @@ export interface IAppApi {
   delete: (string) => void;
   create: (object) => void;
   closeForm: () => void;
+  openForm: (ITodoItem) => void;
 }
 
 @Component({
@@ -17,6 +18,16 @@ export class AppComponent implements OnInit {
   title = 'angular-todo';
   data: ITodoItem[];
   showAddForm = false;
+  todoObject: ITodoItem = {
+    _id: '',
+    text: '',
+    done: false,
+    completed: false,
+    creation_date: 0,
+    created_by: '',
+    deadline: 0,
+  };
+
   constructor(private dataService: DataService) { }
 
   getAppApi() {
@@ -32,7 +43,7 @@ export class AppComponent implements OnInit {
       },
       closeForm: () => {
         this.closeForm();
-      }
+      },
     };
   }
 
@@ -63,6 +74,10 @@ export class AppComponent implements OnInit {
 
   closeForm() {
     this.showAddForm = false;
+  }
+
+  log(item) {
+    console.log(item);
   }
 
   ngOnInit() {

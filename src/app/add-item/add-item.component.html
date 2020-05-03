@@ -3,18 +3,20 @@
     <button aria-label="Add form close button" type="button" class="add-item__close close" (click)="closeForm()">
       <mat-icon class="close__icon">clear</mat-icon>
     </button>
+    <header class="form-header">
+      Add your new task
+    </header>
     <div class="form-item">
-      <label class="form-item__label">
-        Todo text
-      </label>
-      <input class="form-item__input" type="text" formControlName="text">
+      <input class="form-item__input" type="text" formControlName="text" required>
+      <label class="form-item__label">Task text</label>
     </div>
     <div class="form-item">
-      <label class="form-item__label">
-        Deadline
-      </label>
-      <input class="form-item__input" type="text" formControlName="deadline">
+      <input class="form-item__input" formControlName="deadlineStr" [matDatepicker]="datepicker" (dateChange)="dateToTimestamp($event)" type="text" required>
+      <label class="form-item__label">Deadline</label>
+      <mat-datepicker-toggle matSuffix [for]="datepicker" class="form-item__datepicker"></mat-datepicker-toggle>
+      <mat-datepicker #datepicker></mat-datepicker>
+      <input type="text" formControlName="deadline" hidden>
     </div>
-    <button type="submit">Create</button>
+    <button class="form-submit" type="submit" [disabled]="!addForm.valid">Create</button>
   </form>
 </div>

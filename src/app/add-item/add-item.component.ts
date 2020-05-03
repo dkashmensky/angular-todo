@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { DataService } from '../services/data.service';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { IAppApi } from '../app.component';
 
 @Component({
@@ -16,19 +15,27 @@ export class AddItemComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private dataService: DataService) {
     this.addForm = this.formBuilder.group({
       text: '',
-      deadline: Date.now(),
+      deadline: '',
+      deadlineStr: '',
     });
   }
 
   ngOnInit(): void {
+
   }
 
   createTodo(data) {
-    this.appApi.create(data);
+    if (this.addForm.valid) {
+      this.appApi.create(data);
+    }
   }
 
   closeForm() {
     this.appApi.closeForm();
+  }
+
+  dateToTimestamp(event) {
+    this.addForm.value.deadline = new Date(event.value).getTime();
   }
 
 }

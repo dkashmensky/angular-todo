@@ -1,16 +1,18 @@
 <div class="wrapper">
   <div class="header">
-
+    
   </div>
   <aside class="sidemenu">
-
+    
   </aside>
   <main class="main">
-    <button aria-label="Add todo button" (click)="showAddForm = !showAddForm"><mat-icon>add</mat-icon></button>
-    <ul class="todoList">
+    <div class="todo-add">
+      <button class="todo-add__button" aria-label="Add todo button" (click)="showAddForm = true"><mat-icon>add</mat-icon></button>
+    </div>
+    <div class="todoList">
       <app-todo-item *ngFor="let todo of data" [todo]="todo" [appApi]="getAppApi()"> 
       </app-todo-item>
-    </ul>
+    </div>
   
     <app-add-item *ngIf="showAddForm" [appApi]="getAppApi()"></app-add-item>
   </main>

@@ -25,11 +25,19 @@
     display: none;
   }
 
-  &__button:hover {
+  &__button--delete:hover {
     color: mat-color($red);
   }
 
+  &__button--edit:hover {
+    color: $yellow;
+  }
+
   &:hover &__button {
+    display: flex;
+  }
+
+  &__buttons {
     display: flex;
   }
 }

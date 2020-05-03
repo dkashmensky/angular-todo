@@ -1,9 +1,14 @@
-<li class="todo-item">
+<div class="todo-item">
   <div class="todo-item__main">
     <mat-checkbox class="todo-item__checkbox" [(ngModel)]="todo.done" (change)="save(todo)" aria-label="todo.text"></mat-checkbox>
     <div class="todo-item__text">{{ todo.text }}</div>
   </div>
-  <button class="todo-item__button" aria-label="Delete todo button" (click)="delete(todo._id)">
-    <mat-icon class="todo-item__icon">delete</mat-icon>
-  </button>
-</li>
+  <div class="todo-item__buttons">
+    <button class="todo-item__button todo-item__button--edit" aria-label="Edit todo button">
+      <mat-icon class="todo-item__icon">edit</mat-icon>
+    </button>
+    <button class="todo-item__button todo-item__button--delete" aria-label="Delete todo button" (click)="delete(todo._id)">
+      <mat-icon class="todo-item__icon">delete</mat-icon>
+    </button>
+  </div>
+</div>

@@ -8,7 +8,6 @@ $custom-typography: mat-typography-config(
 
 @include mat-core($custom-typography);
 
-html, body { height: 100%; }
 body { color: mat-color($font-color); margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 button {
