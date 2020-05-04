@@ -1,9 +1,9 @@
 <div class="todo-item">
   <div class="todo-item__main">
-    <mat-checkbox class="todo-item__checkbox" [(ngModel)]="todo.done" (change)="save(todo)" aria-label="todo.text"></mat-checkbox>
+    <mat-checkbox class="todo-item__checkbox" [disabled]="userId !== todo.created_by" [(ngModel)]="todo.done" (change)="save(todo)" aria-label="todo.text"></mat-checkbox>
     <div class="todo-item__text">{{ todo.text }}</div>
   </div>
-  <div class="todo-item__buttons">
+  <div class="todo-item__buttons" *ngIf="userId === todo.created_by">
     <button class="todo-item__button todo-item__button--edit" aria-label="Edit todo button" (click)="showEditForm = true">
       <mat-icon class="todo-item__icon">edit</mat-icon>
     </button>

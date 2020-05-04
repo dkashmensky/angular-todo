@@ -1,16 +1,80 @@
 <div class="wrapper">
   <div class="header">
-    
+    <form class="user-picker">
+      <mat-form-field>
+        <mat-label class="user-picker__label">Search</mat-label>
+        <input matInput autocomplete="off">
+      </mat-form-field>
+    </form>
+    <form class="user-picker">
+      <mat-form-field class="user-picker__field">
+        <mat-label>User</mat-label>
+        <mat-select [(value)]="currentUserId" (selectionChange)="get()">
+          <mat-option *ngFor="let user of users" [value]="user._id">
+            {{ user.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
   </div>
+
   <aside class="sidemenu">
     
   </aside>
+
   <main class="main">
-    <div class="todo-add">
-      <button class="todo-add__button" aria-label="Add todo button" (click)="showAddForm = true"><mat-icon>add</mat-icon></button>
+    <div class="todo-buttons">
+      <button class="todo-buttons__button" aria-label="Add todo button" (click)="showAddForm = true"><mat-icon>add</mat-icon></button>
+      <form class="todo-buttons__filters todo-filters">
+        <mat-form-field class="todo-filters__field">
+          <mat-label>Sort by</mat-label>
+          <mat-select [(value)]="sort" (selectionChange)="sortTodo()">
+            <mat-option value="" selected>
+              -
+            </mat-option>
+            <mat-option value="dead-asc">
+              Deadline &#8593;
+            </mat-option>
+            <mat-option value="dead-desc">
+              Deadline &#8595;
+            </mat-option>
+            <mat-option value="create-asc">
+              Creation &#8593;
+            </mat-option>
+            <mat-option value="create-desc">
+              Creation &#8595;
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="todo-filters__field">
+          <mat-label>Status</mat-label>
+          <mat-select [(value)]="statusFilter" (selectionChange)="get()">
+            <mat-option value="all" selected>
+              All
+            </mat-option>
+            <mat-option value="true">
+              Done
+            </mat-option>
+            <mat-option value="false">
+              In progress
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="todo-filters__field">
+          <mat-label>User</mat-label>
+          <mat-select [(value)]="userFilter" (selectionChange)="get()">
+            <mat-option value="all">
+              All
+            </mat-option>
+            <mat-option *ngFor="let user of users" [value]="user._id">
+              {{ user.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
     </div>
     <div class="todoList">
-      <app-todo-item *ngFor="let todo of data" [todo]="todo" [appApi]="getAppApi()"> 
+      <app-todo-item *ngFor="let todo of data" [todo]="todo" [appApi]="getAppApi()" [userId]="currentUserId"> 
       </app-todo-item>
     </div>
   

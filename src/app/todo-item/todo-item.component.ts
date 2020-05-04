@@ -14,6 +14,7 @@ export interface IItemApi {
 export class TodoItemComponent implements OnInit {
   @Input() todo: ITodoItem;
   @Input() appApi: IAppApi;
+  @Input() userId: string;
 
   showEditForm = false;
 

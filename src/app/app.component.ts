@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService, ITodoItem } from './services/data.service';
+import { DataService, ITodoItem, IUser } from './services/data.service';
 
 export interface IAppApi {
   save: (ITodoItem) => void;
@@ -17,6 +17,7 @@ export interface IAppApi {
 export class AppComponent implements OnInit {
   title = 'angular-todo';
   data: ITodoItem[];
+  users: IUser[];
   showAddForm = false;
   todoObject: ITodoItem = {
     _id: '',
@@ -26,6 +27,10 @@ export class AppComponent implements OnInit {
     created_by: '',
     deadline: 0,
   };
+  statusFilter: string | boolean = 'all';
+  userFilter = 'all';
+  currentUserId = '';
+  sort = '';
 
   constructor(private dataService: DataService) { }
 
@@ -46,14 +51,41 @@ export class AppComponent implements OnInit {
     };
   }
 
+  sortTodo() {
+    switch (this.sort) {
+      case 'dead-asc':
+        this.data.sort((a, b) => a.deadline - b.deadline);
+        break;
+      case 'dead-desc':
+        this.data.sort((a, b) => b.deadline - a.deadline);
+        break;
+      case 'create-asc':
+        this.data.sort((a, b) => a.creation_date - b.creation_date);
+        break;
+      case 'create-desc':
+        this.data.sort((a, b) => b.creation_date - a.creation_date);
+        break;
+      default:
+        this.get();
+        break;
+    }
+  }
+
   get() {
-    this.dataService.fetchData().then(json => {
+    this.dataService.fetchData(this.statusFilter, this.userFilter).then(json => {
       this.data = json.todos;
     });
   }
 
+  getUsers() {
+    this.dataService.fetchUsers().then(json => {
+      this.users = json.users;
+      this.currentUserId = json.users[0]._id;
+    });
+  }
+
   create(todo) {
-    this.dataService.createTodo(todo).then(response => {
+    this.dataService.createTodo(todo, this.currentUserId).then(response => {
       console.log(response);
       this.showAddForm = false;
       this.get();
@@ -61,11 +93,11 @@ export class AppComponent implements OnInit {
   }
 
   save(todo) {
-    this.dataService.saveTodo(todo).then(response => console.log(response)).then(response => this.get());
+    this.dataService.saveTodo(todo, this.currentUserId).then(response => console.log(response)).then(response => this.get());
   }
 
   delete(id) {
-    this.dataService.deleteTodo(id).then(response => {
+    this.dataService.deleteTodo(id, this.currentUserId).then(response => {
       console.log(response);
       this.get();
     });
@@ -77,5 +109,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.get();
+    this.getUsers();
   }
 }

@@ -2,7 +2,7 @@
 @import '../variables.scss';
 
 $side-width: 300px;
-$header-height: 40px;
+$header-height: 50px;
 
 .wrapper {
   display: flex;
@@ -11,9 +11,13 @@ $header-height: 40px;
 }
 
 .header {
-  background: mat-color($primary);
+  background: $yellow;
+  box-sizing: border-box;
+  display: flex;
   height: $header-height;
+  justify-content: space-between;
   left: 0;
+  padding: 5px 10px;
   position: fixed;
   top: 0;
   width: 100%;
@@ -40,10 +44,11 @@ $header-height: 40px;
   width: calc(100% - #{$side-width});
 }
 
-.todo-add {
+.todo-buttons {
   align-items: center;
   display: flex;
   height: 50px;
+  justify-content: space-between;
   width: 100%;
 
   &__button {
@@ -75,5 +80,12 @@ $header-height: 40px;
         transition: 0.3s;
       }
     }
+  }
+}
+
+.todo-filters {
+  &__field {
+    margin-left: 20px;
+    width: 100px;
   }
 }
