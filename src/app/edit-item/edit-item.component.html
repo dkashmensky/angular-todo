@@ -1,0 +1,22 @@
+<div class="edit-item">
+  <form class="edit-item__form" [formGroup]="editForm" (ngSubmit)="saveTodo(editForm.value)">
+    <button aria-label="Edit form close button" type="button" class="edit-item__close close" (click)="closeForm()">
+      <mat-icon class="close__icon">clear</mat-icon>
+    </button>
+    <header class="form-header">
+      Edit your task
+    </header>
+    <div class="form-item">
+      <input class="form-item__input" type="text" formControlName="text" required>
+      <label class="form-item__label">Task text</label>
+    </div>
+    <div class="form-item">
+      <input class="form-item__input" formControlName="deadlineStr" [matDatepicker]="datepicker" (dateChange)="dateToTimestamp($event)" type="text" required>
+      <label class="form-item__label">Deadline</label>
+      <mat-datepicker-toggle matSuffix [for]="datepicker" class="form-item__datepicker"></mat-datepicker-toggle>
+      <mat-datepicker #datepicker></mat-datepicker>
+      <input type="text" formControlName="deadline" hidden>
+    </div>
+    <button class="form-submit" type="submit" [disabled]="!editForm.valid">Confirm</button>
+  </form>
+</div>

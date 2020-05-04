@@ -5,7 +5,6 @@ export interface ITodoItem {
   _id: string;
   text: string;
   done: boolean;
-  completed: boolean;
   creation_date: number;
   created_by: string;
   deadline: number;

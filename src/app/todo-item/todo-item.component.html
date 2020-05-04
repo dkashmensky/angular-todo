@@ -4,7 +4,7 @@
     <div class="todo-item__text">{{ todo.text }}</div>
   </div>
   <div class="todo-item__buttons">
-    <button class="todo-item__button todo-item__button--edit" aria-label="Edit todo button">
+    <button class="todo-item__button todo-item__button--edit" aria-label="Edit todo button" (click)="showEditForm = true">
       <mat-icon class="todo-item__icon">edit</mat-icon>
     </button>
     <button class="todo-item__button todo-item__button--delete" aria-label="Delete todo button" (click)="delete(todo._id)">
@@ -12,3 +12,5 @@
     </button>
   </div>
 </div>
+
+<app-edit-item *ngIf="showEditForm" [todo]="todo" [appApi]="appApi" [itemApi]="getItemApi()"></app-edit-item>

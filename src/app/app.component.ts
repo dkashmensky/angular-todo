@@ -22,7 +22,6 @@ export class AppComponent implements OnInit {
     _id: '',
     text: '',
     done: false,
-    completed: false,
     creation_date: 0,
     created_by: '',
     deadline: 0,
@@ -62,7 +61,7 @@ export class AppComponent implements OnInit {
   }
 
   save(todo) {
-    this.dataService.saveTodo(todo).then(response => console.log(response));
+    this.dataService.saveTodo(todo).then(response => console.log(response)).then(response => this.get());
   }
 
   delete(id) {
@@ -74,10 +73,6 @@ export class AppComponent implements OnInit {
 
   closeForm() {
     this.showAddForm = false;
-  }
-
-  log(item) {
-    console.log(item);
   }
 
   ngOnInit() {
