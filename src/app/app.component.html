@@ -3,7 +3,7 @@
     <form class="user-picker">
       <mat-form-field>
         <mat-label class="user-picker__label">Search</mat-label>
-        <input matInput autocomplete="off">
+        <input matInput autocomplete="off" (input)="search()" name="searchInput" [(ngModel)]="searchFilter">
       </mat-form-field>
     </form>
     <form class="user-picker">
@@ -44,6 +44,12 @@
             <mat-option value="create-desc">
               Creation &#8595;
             </mat-option>
+            <mat-option value="name-asc">
+              Name &#8593;
+            </mat-option>
+            <mat-option value="name-desc">
+              Name &#8595;
+            </mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field class="todo-filters__field">
@@ -77,6 +83,8 @@
       <app-todo-item *ngFor="let todo of data" [todo]="todo" [appApi]="getAppApi()" [userId]="currentUserId"> 
       </app-todo-item>
     </div>
+
+    <div *ngIf="!data.length" class="no-items">Sorry, no items match your request</div>
   
     <app-add-item *ngIf="showAddForm" [appApi]="getAppApi()"></app-add-item>
   </main>

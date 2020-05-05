@@ -31,6 +31,7 @@ export class AppComponent implements OnInit {
   userFilter = 'all';
   currentUserId = '';
   sort = '';
+  searchFilter = '';
 
   constructor(private dataService: DataService) { }
 
@@ -51,6 +52,16 @@ export class AppComponent implements OnInit {
     };
   }
 
+  search() {
+    console.log(this.searchFilter);
+    if (this.searchFilter === '') {
+      this.get();
+      return;
+    }
+
+    this.data = this.data.filter((item) => item.text.toLowerCase().includes(this.searchFilter.toLowerCase()));
+  }
+
   sortTodo() {
     switch (this.sort) {
       case 'dead-asc':
@@ -65,6 +76,12 @@ export class AppComponent implements OnInit {
       case 'create-desc':
         this.data.sort((a, b) => b.creation_date - a.creation_date);
         break;
+      case 'name-asc':
+        this.data.sort((a, b) => a.text.localeCompare(b.text));
+        break;
+      case 'name-desc':
+        this.data.sort((a, b) => b.text.localeCompare(a.text));
+        break;
       default:
         this.get();
         break;
@@ -73,7 +90,11 @@ export class AppComponent implements OnInit {
 
   get() {
     this.dataService.fetchData(this.statusFilter, this.userFilter).then(json => {
-      this.data = json.todos;
+      if (this.searchFilter !== '') {
+        this.data = json.todos.filter((item) => item.text.toLowerCase().includes(this.searchFilter.toLowerCase()));
+      } else {
+        this.data = json.todos;
+      }
     });
   }
 
