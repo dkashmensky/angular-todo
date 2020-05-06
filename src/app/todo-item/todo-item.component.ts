@@ -32,6 +32,10 @@ export class TodoItemComponent implements OnInit {
     this.showEditForm = false;
   }
 
+  showTodoDetails(todo) {
+    this.appApi.setTodoDetails(todo);
+  }
+
   getItemApi() {
     return {
       closeEditForm: () => {

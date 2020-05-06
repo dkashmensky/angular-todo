@@ -7,6 +7,7 @@ export interface IAppApi {
   create: (object) => void;
   closeForm: () => void;
   openForm: (ITodoItem) => void;
+  setTodoDetails: (ITodoItem) => void;
 }
 
 @Component({
@@ -16,7 +17,7 @@ export interface IAppApi {
 })
 export class AppComponent implements OnInit {
   title = 'angular-todo';
-  data: ITodoItem[];
+  data: ITodoItem[] = [];
   users: IUser[];
   showAddForm = false;
   todoObject: ITodoItem = {
@@ -32,6 +33,7 @@ export class AppComponent implements OnInit {
   currentUserId = '';
   sort = '';
   searchFilter = '';
+  todoToShow: ITodoItem[] | undefined;
 
   constructor(private dataService: DataService) { }
 
@@ -49,6 +51,9 @@ export class AppComponent implements OnInit {
       closeForm: () => {
         this.closeForm();
       },
+      setTodoDetails: (todo) => {
+        this.setTodoDetails(todo);
+      }
     };
   }
 
@@ -126,6 +131,10 @@ export class AppComponent implements OnInit {
 
   closeForm() {
     this.showAddForm = false;
+  }
+
+  setTodoDetails(todo) {
+    this.todoToShow = todo;
   }
 
   ngOnInit() {

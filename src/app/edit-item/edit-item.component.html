@@ -1,4 +1,6 @@
 <div class="edit-item">
+
+  <!-- Edit task form -->
   <form class="edit-item__form" [formGroup]="editForm" (ngSubmit)="saveTodo(editForm.value)">
     <button aria-label="Edit form close button" type="button" class="edit-item__close close" (click)="closeForm()">
       <mat-icon class="close__icon">clear</mat-icon>
@@ -19,4 +21,5 @@
     </div>
     <button class="form-submit" type="submit" [disabled]="!editForm.valid">Confirm</button>
   </form>
+
 </div>

@@ -1,0 +1,18 @@
+<div *ngIf="todo" class="todo-details">
+  <p>
+    <strong>Task text:</strong> {{ todo.text }}
+  </p>
+  <p>
+    <strong>Creation date:</strong> {{ timestampToString(todo.creation_date) }}
+  </p>
+  <p>
+    <strong>Deadline:</strong> {{ timestampToString(todo.deadline) }}
+  </p>
+  <p>
+    <strong>Created by:</strong> {{ getUserName(todo.created_by, users) }}
+  </p>
+</div>
+
+<div *ngIf="!todo" class="todo-placeholder">
+  Hover your mouse over task item to see the details
+</div>

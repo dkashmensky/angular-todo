@@ -21,12 +21,10 @@ export interface IUser {
   providedIn: 'root'
 })
 export class DataService {
-  user = '5eaad944e62fed084b4bc208';
-
   constructor(private http: HttpClient) { }
 
-  apiTodoUrl = 'http://localhost:8080/api/todo';
-  apiUserUrl = 'http://localhost:8080/api/user';
+  apiTodoUrl = 'https://ng-todo-dk.herokuapp.com/api/todo';
+  apiUserUrl = 'https://ng-todo-dk.herokuapp.com/api/user';
 
   fetchData(statusFilter, userFilter) {
     return fetch(`${this.apiTodoUrl}?user=${userFilter}&status=${statusFilter}`)

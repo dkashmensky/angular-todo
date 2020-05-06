@@ -1,8 +1,12 @@
-<div class="todo-item">
+<div class="todo-item" (mouseenter)="showTodoDetails(todo)" (mouseleave)="showTodoDetails(undefined)">
+
+  <!-- Main todo block with text and checkbox -->
   <div class="todo-item__main">
     <mat-checkbox class="todo-item__checkbox" [disabled]="userId !== todo.created_by" [(ngModel)]="todo.done" (change)="save(todo)" aria-label="todo.text"></mat-checkbox>
     <div class="todo-item__text">{{ todo.text }}</div>
   </div>
+
+  <!-- Todo item edit and delete buttons, shown only on hover -->
   <div class="todo-item__buttons" *ngIf="userId === todo.created_by">
     <button class="todo-item__button todo-item__button--edit" aria-label="Edit todo button" (click)="showEditForm = true">
       <mat-icon class="todo-item__icon">edit</mat-icon>
@@ -11,6 +15,7 @@
       <mat-icon class="todo-item__icon">delete</mat-icon>
     </button>
   </div>
+
 </div>
 
 <app-edit-item *ngIf="showEditForm" [todo]="todo" [appApi]="appApi" [itemApi]="getItemApi()"></app-edit-item>

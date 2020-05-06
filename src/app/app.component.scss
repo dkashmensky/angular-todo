@@ -26,10 +26,12 @@ $header-height: 50px;
 
 .sidemenu {
   background: mat-color($side);
+  box-sizing: border-box;
   height: calc(100vh - #{$header-height});
   left: 0;
+  padding: 20px;
   position: fixed;
-  top: 40px;
+  top: $header-height;
   width: $side-width;
 }
 

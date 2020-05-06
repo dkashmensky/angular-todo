@@ -1,4 +1,6 @@
 <div class="wrapper">
+
+  <!-- Header block with user picker (no auth implemented yet, sorry) and search filter -->
   <div class="header">
     <form class="user-picker">
       <mat-form-field>
@@ -18,10 +20,12 @@
     </form>
   </div>
 
+  <!-- Side block with todo item details -->
   <aside class="sidemenu">
-    
+    <app-todo-details [todo]="todoToShow" [users]="users"></app-todo-details>
   </aside>
 
+  <!-- Main block with todo list -->
   <main class="main">
     <div class="todo-buttons">
       <button class="todo-buttons__button" aria-label="Add todo button" (click)="showAddForm = true"><mat-icon>add</mat-icon></button>
