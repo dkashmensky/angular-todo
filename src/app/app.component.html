@@ -3,7 +3,7 @@
   <!-- Header block with user picker (no auth implemented yet, sorry) and search filter -->
   <div class="header">
     <form class="user-picker">
-      <mat-form-field>
+      <mat-form-field class="user-picker__field">
         <mat-label class="user-picker__label">Search</mat-label>
         <input matInput autocomplete="off" (input)="search()" name="searchInput" [(ngModel)]="searchFilter">
       </mat-form-field>
